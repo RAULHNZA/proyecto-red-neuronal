@@ -2,7 +2,7 @@
 
 Última actualización: 2026-10-21
 
-**Siguiente paso: terminar la Fase 2 y hacer la Fase 4.** La Fase 1 y la 3 ya están (2026-10-21). El repositorio ya existe en GitHub como **privado** (`RAULHNZA/proyecto-red-neuronal`); falta revisar qué se publica, hacerlo público (preguntarle a Raúl) y publicar la página en Vercel.
+**Siguiente paso: la Fase 4 (Vercel).** Las Fases 1, 2 y 3 ya están. El repositorio es público: https://github.com/RAULHNZA/proyecto-red-neuronal
 
 Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matrícula 2173770, carrera IAS, grupo 002. Para instalar el entorno, ver [INSTALACION.md](INSTALACION.md).
 
@@ -18,7 +18,7 @@ Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matríc
 | Resultados reales (gráficas, métricas, `resultados.json`) | ✅ Hechos con GitHub Actions | `resultados/` |
 | Ajustar las conclusiones del notebook a los números reales | ✅ Hecho | Última celda del notebook |
 | `codigo/red_neuronal.py` y `README.md` | ✅ Hechos, con métricas reales | `codigo/`, `README.md` |
-| Repositorio en GitHub | 🟡 Creado como privado; falta hacerlo público | github.com/RAULHNZA/proyecto-red-neuronal |
+| Repositorio en GitHub | ✅ Público | https://github.com/RAULHNZA/proyecto-red-neuronal |
 | Página web en React | ✅ Hecha con los datos reales | `web/` |
 | Página publicada en Vercel | ⏳ Pendiente (Fase 4) | — |
 
@@ -203,3 +203,5 @@ Cada push a GitHub vuelve a publicar la página automáticamente.
 | 2026-10-21 | Primera corrida en Actions: 0 errores, pero el gradient check marcó 4.9e-05 (❌). Se reprodujo en local solo con numpy (CSV en `datos/`): da 1.1e-11. La causa eran neuronas con z casi 0: el ±eps cruza la esquina de ReLU y la derivada numérica sale falsa. El check ahora omite esos pesos y dice cuántos (en Actions: 2 de 257). Resultado: 1.04e-11 ✅ |
 | 2026-10-21 | **Resultados reales (test):** red MAE 52.95 Wh, RMSE 92.13 Wh, R² 0.159; regresión lineal MAE 55.64, RMSE 97.40, R² 0.061. La red tiene 4.8 % menos MAE. Loss train 2.54 → 0.848 y val 1.79 → 0.760; con init Normal(0, 0.01) se queda en 1.000. La red casi nunca predice más de ~215 Wh aunque hay consumos reales de 700+ Wh |
 | 2026-10-21 | Se reemplazó `notebooks/red_neuronal.ipynb` por el notebook ejecutado (con salidas) y se reescribieron las Conclusiones con los números reales. `resultados/` se copió a la raíz y `resultados.json` a `web/src/data/` (el aviso de "datos de ejemplo" desapareció). README, este plan y la web se actualizaron con las métricas |
+| 2026-10-21 | Raúl vio la página en local (`npm run dev`, http://localhost:5173) por primera vez |
+| 2026-10-21 | Antes de publicar se revisó el contenido: `CLAUDE.md` e `INSTALACION.md` §6 mencionan la PC de la empresa y la alerta de ciberseguridad. Raúl decidió dejarlo así (la laptop es personal y no le preocupa). El repo se hizo **público** con `gh repo edit --visibility public` |
