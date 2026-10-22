@@ -1,0 +1,4 @@
+{
+  // El corrector de ortografía está en inglés y marca todo el español del proyecto
+  "cSpell.enabled": false
+}

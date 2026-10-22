@@ -161,6 +161,8 @@ Cierra `npm run dev` con Ctrl+C al terminar.
 | La red con `init="small"` no aprende (loss ≈ 1.0) | Comportamiento esperado: pesos `Normal(0, 0.01)` muy pequeños | Por eso la red principal usa `init="he"`; el notebook lo muestra a propósito |
 | Entrenamiento lento (unos 40 s por red en una laptop) | 5000 épocas con batch completo de 13,814 filas | Normal; en Colab tarda algo parecido |
 | `ImportError: DLL load failed ... Una directiva de Control de aplicaciones bloqueó este archivo` al importar pandas en local | Windows (Control inteligente de aplicaciones) bloquea DLLs de pandas en la laptop personal de Raúl | Usar Colab ([GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md)). No apagar la protección: en Windows 11 no se puede volver a encender sin reinstalar |
+| `DateParseError: Unknown datetime string format ... 2016-01-1117:00:00` | `ucimlrepo` (`.data.original`) trae la fecha pegada a la hora, sin espacio | Corregido en `cell-08` (2026-10-21): se agrega el espacio antes de convertir la fecha |
+| Líneas onduladas en el notebook: "Unknown word", "No se ha podido resolver la importación google.colab" | Avisos del editor, no errores al correr: el corrector está en inglés y Pylance usa el Python de la PC | Se pueden ignorar; el corrector se apagó en `.vscode/settings.json` |
 | R² bajo (menor a 0.4) | Las 6 variables no explican el comportamiento humano | Es esperado; se explica en las conclusiones |
 
 ---
