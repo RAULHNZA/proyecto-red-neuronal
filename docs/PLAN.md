@@ -2,7 +2,13 @@
 
 Última actualización: 2026-10-21
 
-**Siguiente paso: la Fase 4 (Vercel).** Las Fases 1, 2 y 3 ya están. El repositorio es público: https://github.com/RAULHNZA/proyecto-red-neuronal
+**Dónde nos quedamos (2026-10-21, noche).** Fases 1, 2 y 3 terminadas con resultados reales; repo público en https://github.com/RAULHNZA/proyecto-red-neuronal. Pendientes, en orden:
+
+1. **Raúl revisa el rediseño de la página** (`cd web` → `npm run dev` → http://localhost:5173). Para ver las animaciones en su PC tiene que encender Configuración → Accesibilidad → Efectos visuales → **Efectos de animación**.
+2. **Subir a GitHub el rediseño** (`git push`). El commit está hecho en local pero no subido: Raúl pidió revisarlo antes.
+3. **Fase 4: publicar en Vercel** (pasos en la Fase 4 de abajo; falta escribir la Parte 2 de GUIA_PASO_A_PASO.md, con cada clic).
+4. **Corregir kWh → Wh** en la diapositiva de arquitectura de `Act-5_2173770_presentacion.pptx` (Google Drive), y revisar si la presentación o el guion prometen el "90 % de precisión" (el R² real es 0.159).
+5. **Preguntarle a Raúl qué pide el profesor** para la entrega final (¿solo enlaces? ¿reporte escrito? ¿presentación nueva?).
 
 Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matrícula 2173770, carrera IAS, grupo 002. Para instalar el entorno, ver [INSTALACION.md](INSTALACION.md).
 
@@ -207,4 +213,4 @@ Cada push a GitHub vuelve a publicar la página automáticamente.
 | 2026-10-21 | Antes de publicar se revisó el contenido: `CLAUDE.md` e `INSTALACION.md` §6 mencionan la PC de la empresa y la alerta de ciberseguridad. Raúl decidió dejarlo así (la laptop es personal y no le preocupa). El repo se hizo **público** con `gh repo edit --visibility public` |
 | 2026-10-21 | **Rediseño de la página** a pedido de Raúl (no le gustaba el fondo negro; quería algo minimalista, tecnológico y con animaciones sin tapar el texto). Cambios: tema claro único (se quitó el modo oscuro); fuentes Inter y JetBrains Mono (Google Fonts); fondo animado `FondoRed.jsx` (canvas con neuronas que flotan, conexiones y señales, con un velo que lo aclara en la columna del texto; se pausa con la pestaña oculta); barra de navegación fija con barra de avance (`Nav.jsx`); portada nueva con datos clave y botones; secciones numeradas 01–08 que aparecen al hacer scroll (`Revelar.jsx` + `hooks.js`); números que cuentan (`Contador.jsx`); gráficas que se dibujan al entrar en pantalla; señales animadas que recorren las capas en el diagrama de arquitectura |
 | 2026-10-21 | Hallazgos del rediseño: (1) un degradado SVG con `stop-color="var(...)"` no se pintaba, y con `objectBoundingBox` tampoco en líneas horizontales; se usan colores fijos y `userSpaceOnUse`. (2) **El Windows de Raúl tiene apagados los "Efectos de animación"**, así que Chrome reporta `prefers-reduced-motion: reduce` y la página apaga sus animaciones a propósito (accesibilidad). Para verlas hay que encender ese ajuste. Para revisar con capturas se usa Chrome con `--force-prefers-no-reduced-motion` |
-
+| 2026-10-21 | Fin de la sesión: Raúl pidió guardar todo para retomarlo otro día. Se apagaron los servidores locales y se anotaron los pendientes al inicio de este plan |

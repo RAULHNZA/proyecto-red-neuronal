@@ -7,7 +7,7 @@ Proyecto final de **Seminario de Sistemas II** de Raúl Hernández Nuñez (matr�
 - [docs/PLAN.md](docs/PLAN.md): qué está hecho, qué falta y la bitácora. **Actualiza la tabla de estado y la bitácora cada vez que termines algo.**
 - [docs/INSTALACION.md](docs/INSTALACION.md): cómo instalar el entorno, conseguir los datos y correr cada parte.
 
-**Siguiente paso:** la Fase 4, publicar en Vercel. Fases 1, 2 y 3 hechas (2026-10-21) con resultados reales (R² test 0.159, ver PLAN.md). El repo es **público**: https://github.com/RAULHNZA/proyecto-red-neuronal (Raúl aceptó publicar también CLAUDE.md e INSTALACION.md §6 tal cual). **Para correr el notebook usa GitHub Actions** (`gh workflow run notebook.yml` o un push que cambie el notebook; luego `gh run download <id> -n resultados`). En la laptop no se puede porque Windows bloquea pandas; numpy sí funciona en `.venv`.
+**Siguiente paso:** ver la lista "Dónde nos quedamos" al inicio de `docs/PLAN.md` (revisión del rediseño, `git push` pendiente, Vercel, kWh en la presentación y requisitos de entrega). Fases 1, 2 y 3 hechas con resultados reales (R² test 0.159). El repo es **público**: https://github.com/RAULHNZA/proyecto-red-neuronal. **Para correr el notebook usa GitHub Actions** (`gh workflow run notebook.yml` o un push que cambie el notebook; luego `gh run download <id> -n resultados`). En la laptop no se puede porque Windows bloquea pandas; numpy y Pillow sí funcionan en `.venv`.
 
 ## Estructura
 
