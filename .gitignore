@@ -1,0 +1,18 @@
+# Dataset (se descarga desde UCI; no se sube)
+datos/
+energydata_complete.csv
+resultados.zip
+
+# Python
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Web
+node_modules/
+web/dist/
+.vercel
+
+# Sistema
+.DS_Store
+Thumbs.db
