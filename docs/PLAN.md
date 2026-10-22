@@ -2,7 +2,7 @@
 
 Última actualización: 2026-10-21
 
-**Siguiente paso: la Fase 1.** Raúl corre `notebooks/red_neuronal.ipynb` en Colab siguiendo [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md) (Parte 1). Deja `resultados.zip` y el notebook con salidas en su carpeta de Descargas, y Claude los acomoda. La página de React ya está hecha con datos de ejemplo; solo falta cambiarle el JSON por el real.
+**Siguiente paso: la Fase 1.** Raúl corre `notebooks/red_neuronal.ipynb` en VS Code con la extensión de Colab (kernel remoto) siguiendo [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md), Parte 1, Opción A, y guarda con Ctrl+S. Después Claude corre `python codigo/extraer_resultados.py`, que saca `resultados/` de las salidas del notebook y copia el JSON a la web. La página de React ya está hecha con datos de ejemplo; solo falta cambiarle el JSON por el real.
 
 Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matrícula 2173770, carrera IAS, grupo 002. Para instalar el entorno, ver [INSTALACION.md](INSTALACION.md).
 
@@ -193,3 +193,5 @@ Cada push a GitHub vuelve a publicar la página automáticamente.
 | 2026-10-21 | Se agregó al notebook una celda (antes de Conclusiones) que en Colab descarga `resultados.zip` sola; fuera de Colab no hace nada. El notebook queda con 33 celdas |
 | 2026-10-21 | Se escribió `docs/GUIA_PASO_A_PASO.md`: instrucciones con cada clic para correr el notebook en Colab. Raúl no conoce Colab, así que las guías para él no dan nada por sabido |
 | 2026-10-21 | Raúl preguntó si Claude puede correr Colab por él. Sí: con la extensión Claude para Chrome (ya instalada) conectada con `/chrome` → "Enabled by default". Falta que Raúl la active y abra un chat nuevo. La extensión Google Colab de VS Code no sirve para esto (se maneja solo con clics en VS Code). Pasos en GUIA_PASO_A_PASO.md |
+| 2026-10-21 | Se revisó a fondo la extensión Google Colab de VS Code (`google.colab` 0.9.7). Es un proveedor de kernel: el notebook abierto en VS Code se ejecuta en un servidor de Colab. No tiene API ni comandos que Claude pueda usar (su único servidor local es para el login de Google), así que Raúl tiene que conectarla (Seleccionar kernel → Colab → Auto Connect) y darle Ejecutar todo. Ventaja: las salidas quedan en el `.ipynb` local y no hay que descargar nada. Se volvió la opción recomendada |
+| 2026-10-21 | Con el kernel de Colab, los archivos de `resultados/` se crean en el servidor y no en la PC. Por eso la penúltima celda del notebook ahora muestra las 3 PNG e imprime `metricas.txt` y `resultados.json` entre marcas (`=== ARCHIVO ... ===`, `=== FIN ===`), y se creó `codigo/extraer_resultados.py` (solo biblioteca estándar) para reconstruir `resultados/` y copiar el JSON a `web/src/data/`. Se probó con un notebook simulado |
