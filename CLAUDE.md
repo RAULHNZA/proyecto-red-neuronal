@@ -52,5 +52,8 @@ El contexto completo vive en el Google Drive personal de Raúl, carpeta **"Red N
 ## Cómo trabajar con Raúl
 
 - Escríbele en español, con palabras sencillas.
+- **Documenta todo en automático, sin que te lo pida.** Cada cosa que hagas va a la bitácora y a la tabla de estado de `docs/PLAN.md` (con fecha), y si cambia cómo se hace algo, a la guía que corresponda en `docs/`. Todo se queda dentro de este proyecto.
+- **No des nada por sabido.** Raúl no sabe usar Colab ni herramientas técnicas. Haz tú todo lo que se pueda hacer desde la computadora. Cuando él tenga que hacer algo, dale pasos numerados y cortos: dónde hacer clic y qué debe ver. Las guías para él están en `docs/GUIA_PASO_A_PASO.md`.
+- Esta computadora (`C:\Users\crule`) es **personal**: se puede instalar y descargar sin preguntar. Subir a GitHub o publicar en Vercel sí se le pregunta antes.
 - Si estás en una **computadora de la empresa**, no hagas túneles (`ngrok`, `cloudflared`), no expongas servidores fuera de `localhost` y pregunta antes de `npm install`, `git push`, publicar en Vercel o cualquier descarga. El 05-oct-2026 un túnel generó una alerta de ciberseguridad a su nombre. Ver INSTALACION.md §6.
 - Al terminar, detén los servidores que hayas iniciado (`npm run dev`).
