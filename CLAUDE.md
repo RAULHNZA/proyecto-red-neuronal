@@ -7,17 +7,18 @@ Proyecto final de **Seminario de Sistemas II** de Raúl Hernández Nuñez (matr�
 - [docs/PLAN.md](docs/PLAN.md): qué está hecho, qué falta y la bitácora. **Actualiza la tabla de estado y la bitácora cada vez que termines algo.**
 - [docs/INSTALACION.md](docs/INSTALACION.md): cómo instalar el entorno, conseguir los datos y correr cada parte.
 
-**Siguiente paso:** la Fase 1. Raúl corre el notebook en VS Code con la extensión de Colab (guía: `docs/GUIA_PASO_A_PASO.md`, Opción A) y guarda. Después corre `python codigo/extraer_resultados.py` (usa el Python del sistema; solo biblioteca estándar) para crear `resultados/` y copiar el JSON a `web/src/data/`; luego llena las métricas en README y PLAN y ajusta las conclusiones. En local no se puede entrenar porque Windows bloquea pandas (ver INSTALACION.md §5). Si tienes herramientas de Chrome, también puedes correrlo tú en colab.research.google.com.
+**Siguiente paso:** Fases 1 y 3 hechas (2026-10-21) con resultados reales (R² test 0.159, ver PLAN.md). Faltan: revisar qué se publica y hacer público el repo `RAULHNZA/proyecto-red-neuronal` (hoy es privado; pregúntale a Raúl antes), y publicar en Vercel (Fase 4). **Para correr el notebook usa GitHub Actions** (`gh workflow run notebook.yml` o un push que cambie el notebook; luego `gh run download <id> -n resultados`). En la laptop no se puede porque Windows bloquea pandas; numpy sí funciona en `.venv`.
 
 ## Estructura
 
 ```
-notebooks/red_neuronal.ipynb   Notebook principal (33 celdas, 7 secciones). Es la fuente de la verdad del modelo.
+notebooks/red_neuronal.ipynb   Notebook principal (33 celdas, 7 secciones), guardado con salidas. Es la fuente de la verdad del modelo.
 docs/PLAN.md                   Plan por fases, estado y bitácora
 docs/INSTALACION.md            Instalación, datos y problemas conocidos
 docs/GUIA_PASO_A_PASO.md       Instrucciones con cada clic para Raúl (Colab y luego Vercel)
 requirements.txt               Librerías de Python
-resultados/                    (pendiente) Lo genera el notebook: PNGs, metricas.txt y resultados.json
+resultados/                    Lo genera el notebook (corrida de Actions): PNGs, metricas.txt y resultados.json
+.github/workflows/notebook.yml Corre el notebook en GitHub Actions y guarda los resultados como artefacto
 codigo/red_neuronal.py         La clase NeuralNetwork como script (copia de la celda cell-12)
 codigo/extraer_resultados.py   Saca resultados/ de las salidas guardadas del notebook (para cuando corre en Colab)
 README.md                      Para GitHub; las métricas siguen pendientes

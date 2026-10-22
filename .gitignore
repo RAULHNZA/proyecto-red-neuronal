@@ -16,3 +16,7 @@ web/dist/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Salidas de corridas locales del notebook
+notebooks/resultados/
+notebooks/red_neuronal_ejecutado.ipynb

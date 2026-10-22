@@ -27,7 +27,7 @@ export default function Conclusiones({ metricas }) {
         },
     {
       titulo: `Limitaciones: R² de ${fmt(red['R²'], 3)}`,
-      texto: 'Con solo 6 variables de tiempo y clima exterior el modelo explica una parte pequeña de la variación del consumo. El consumo depende sobre todo de lo que hacen las personas (cuándo cocinan, lavan, etc.), que no está en los datos, y tiene picos muy altos e impredecibles. Las expectativas iniciales de un R² cercano a 0.92 no eran realistas con estas variables.',
+      texto: `Con solo 6 variables de tiempo y clima exterior el modelo explica cerca del ${fmt(red['R²'] * 100, 0)} % de la variación del consumo. El consumo depende sobre todo de lo que hacen las personas (cuándo cocinan, lavan, etc.), que no está en los datos, y tiene picos muy altos e impredecibles. Las expectativas iniciales de un R² cercano a 0.92 no eran realistas con estas variables.`,
     },
     {
       titulo: 'Mejoras posibles',

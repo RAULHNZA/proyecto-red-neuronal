@@ -7,6 +7,8 @@ Si algo no se ve igual que aquí, toma una captura de pantalla y pásasela a Cla
 
 ## Parte 1: entrenar la red con Google Colab (unos 10 minutos)
 
+> ✅ **Ya no tienes que hacer esta parte.** Desde el 2026-10-21 Claude corre el notebook solo en GitHub (GitHub Actions), revisa los errores y los corrige. Las opciones de abajo quedan por si algún día quieres correrlo tú.
+
 **¿Por qué Colab y no tu computadora?** Windows bloquea una de las librerías que usa el notebook (pandas) con el mensaje *"Una directiva de Control de aplicaciones bloqueó este archivo"*. Es una protección de Windows y no conviene apagarla. Colab son computadoras de Google que corren el notebook por ti, así que el bloqueo no importa y no tienes que instalar nada.
 
 **Lo que necesitas:** internet y una cuenta de Google (la de Gmail sirve).

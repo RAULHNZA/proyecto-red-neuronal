@@ -43,8 +43,8 @@ Un *gradient check* compara las derivadas del backpropagation contra una aproxim
 
 | Modelo | MAE (Wh) | RMSE (Wh) | R² |
 |---|---|---|---|
-| Red neuronal [6, 16, 8, 1] | _pendiente_ | _pendiente_ | _pendiente_ |
-| Regresión lineal (scikit-learn) | _pendiente_ | _pendiente_ | _pendiente_ |
+| Red neuronal [6, 16, 8, 1] | **52.9** | **92.1** | **0.159** |
+| Regresión lineal (scikit-learn) | 55.6 | 97.4 | 0.061 |
 
 ![Loss vs épocas](resultados/grafica_loss.png)
 
@@ -52,9 +52,13 @@ Un *gradient check* compara las derivadas del backpropagation contra una aproxim
 
 ![Red neuronal vs regresión lineal](resultados/grafica_comparacion.png)
 
-**Lectura honesta:** con solo 6 variables de tiempo y clima exterior, el R² es bajo. El consumo depende sobre todo de lo que hacen las personas (cuándo cocinan, lavan, etc.), que no está en los datos, y tiene picos muy altos e impredecibles.
+La red tiene 4.8 % menos error (MAE) que la regresión lineal. El *gradient check* da una diferencia relativa de alrededor de 1e-11.
+
+**Lectura honesta:** con solo 6 variables de tiempo y clima exterior, el R² es bajo: el modelo explica cerca del 16 % de la variación del consumo. El consumo depende sobre todo de lo que hacen las personas (cuándo cocinan, lavan, etc.), que no está en los datos, y tiene picos muy altos e impredecibles.
 
 ## Cómo correrlo
+
+**En GitHub Actions:** cada cambio al notebook lo vuelve a correr completo (`.github/workflows/notebook.yml`) y guarda el notebook con salidas y `resultados/` como artefacto.
 
 **En Google Colab (sin instalar nada):** sube `notebooks/red_neuronal.ipynb` en [colab.research.google.com](https://colab.research.google.com) y elige *Runtime → Run all*.
 

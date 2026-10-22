@@ -1,0 +1,14 @@
+Red Neuronal Multicapa [6, 16, 8, 1] - desde cero con NumPy
+Learning rate: 0.01 | Épocas: 5000 | Init: He
+
+Métricas de la red neuronal:
+               MAE (Wh)  RMSE (Wh)      R²
+Entrenamiento   54.0079    95.8153  0.1519
+Validación      52.4247    90.6961  0.1299
+Prueba          52.9487    92.1307  0.1594
+
+Comparación en test:
+                           MAE (Wh)          RMSE (Wh)        R²
+Red neuronal              52.948669          92.130729  0.159435
+Regresión lineal          55.640796          97.401526  0.060507
+Mejora de la red  4.8 % menos error  5.4 % menos error    +0.099

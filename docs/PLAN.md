@@ -2,7 +2,7 @@
 
 Última actualización: 2026-10-21
 
-**Siguiente paso: la Fase 1.** Raúl corre `notebooks/red_neuronal.ipynb` en VS Code con la extensión de Colab (kernel remoto) siguiendo [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md), Parte 1, Opción A, y guarda con Ctrl+S. Después Claude corre `python codigo/extraer_resultados.py`, que saca `resultados/` de las salidas del notebook y copia el JSON a la web. La página de React ya está hecha con datos de ejemplo; solo falta cambiarle el JSON por el real.
+**Siguiente paso: terminar la Fase 2 y hacer la Fase 4.** La Fase 1 y la 3 ya están (2026-10-21). El repositorio ya existe en GitHub como **privado** (`RAULHNZA/proyecto-red-neuronal`); falta revisar qué se publica, hacerlo público (preguntarle a Raúl) y publicar la página en Vercel.
 
 Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matrícula 2173770, carrera IAS, grupo 002. Para instalar el entorno, ver [INSTALACION.md](INSTALACION.md).
 
@@ -14,12 +14,12 @@ Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matríc
 |---|---|---|
 | Contexto del proyecto y guion | ✅ Hecho | Google Drive, carpeta "Red Neuronal - Seminario" (ver `CLAUDE.md`) |
 | Presentación Act-5 | ✅ Hecha y presentada | Drive: `Act-5_2173770_presentacion.pptx` |
-| Notebook de la red neuronal | ✅ Hecho; probado solo con datos sintéticos | `notebooks/red_neuronal.ipynb` |
-| Resultados reales (gráficas, métricas, `resultados.json`) | ⏳ Pendiente (Fase 1) | `resultados/`, todavía no existe |
-| Ajustar las conclusiones del notebook a los números reales | ⏳ Pendiente (Fase 1) | Última celda del notebook |
-| `codigo/red_neuronal.py` y `README.md` | ✅ Hechos; al README le faltan las métricas reales | `codigo/`, `README.md` |
-| Repositorio en GitHub | ⏳ Pendiente (Fase 2) | — |
-| Página web en React | ✅ Hecha con datos de ejemplo; falta poner el `resultados.json` real | `web/` |
+| Notebook de la red neuronal | ✅ Hecho y corrido con los datos reales (guardado con salidas) | `notebooks/red_neuronal.ipynb` |
+| Resultados reales (gráficas, métricas, `resultados.json`) | ✅ Hechos con GitHub Actions | `resultados/` |
+| Ajustar las conclusiones del notebook a los números reales | ✅ Hecho | Última celda del notebook |
+| `codigo/red_neuronal.py` y `README.md` | ✅ Hechos, con métricas reales | `codigo/`, `README.md` |
+| Repositorio en GitHub | 🟡 Creado como privado; falta hacerlo público | github.com/RAULHNZA/proyecto-red-neuronal |
+| Página web en React | ✅ Hecha con los datos reales | `web/` |
 | Página publicada en Vercel | ⏳ Pendiente (Fase 4) | — |
 
 El flujo completo es una línea:
@@ -32,7 +32,9 @@ Google Colab ──resultados/──▶ GitHub ──resultados.json──▶ Re
 
 ---
 
-## Fase 1: correr el notebook (empieza aquí)
+## Fase 1: correr el notebook ✅
+
+**Forma que se usó:** GitHub Actions (`.github/workflows/notebook.yml`). Cada push que cambia el notebook lo corre completo en Ubuntu. Para traer los resultados: `gh run list`, luego `gh run download <id> -n resultados` (trae `red_neuronal_ejecutado.ipynb` y `resultados/`). Los pasos de abajo son la forma manual con Colab.
 
 Al terminar esta fase tienes tus métricas reales y la carpeta `resultados/` con todo lo que necesita la página web. Toma unos 30 minutos.
 
@@ -62,12 +64,12 @@ Lo que debe quedar en `resultados/`:
 
 **Expectativa realista:** el R² de test probablemente quedará por debajo de 0.4. Con solo 6 variables de tiempo y clima es normal, porque el consumo depende del comportamiento de las personas, que no está en los datos. Los documentos originales prometían un R² de 0.92; hay que explicar la diferencia en las conclusiones, no esconderla.
 
-### Resultados reales (llenar al terminar la Fase 1)
+### Resultados reales (corrida de GitHub Actions del 2026-10-21)
 
 | Modelo | MAE test (Wh) | RMSE test (Wh) | R² test |
 |---|---|---|---|
-| Red neuronal [6, 16, 8, 1] | _pendiente_ | _pendiente_ | _pendiente_ |
-| Regresión lineal | _pendiente_ | _pendiente_ | _pendiente_ |
+| Red neuronal [6, 16, 8, 1] | 52.95 | 92.13 | 0.159 |
+| Regresión lineal | 55.64 | 97.40 | 0.061 |
 
 ---
 
@@ -197,3 +199,7 @@ Cada push a GitHub vuelve a publicar la página automáticamente.
 | 2026-10-21 | Con el kernel de Colab, los archivos de `resultados/` se crean en el servidor y no en la PC. Por eso la penúltima celda del notebook ahora muestra las 3 PNG e imprime `metricas.txt` y `resultados.json` entre marcas (`=== ARCHIVO ... ===`, `=== FIN ===`), y se creó `codigo/extraer_resultados.py` (solo biblioteca estándar) para reconstruir `resultados/` y copiar el JSON a `web/src/data/`. Se probó con un notebook simulado |
 | 2026-10-21 | Primera corrida real con la extensión de Colab en VS Code: los datos se descargaron con `ucimlrepo`, pero la celda `cell-08` falló con `DateParseError` porque `ucimlrepo` trae la fecha pegada a la hora (`2016-01-1117:00:00`). Se corrigió agregando el espacio con una expresión regular antes de `pd.to_datetime` |
 | 2026-10-21 | Se agregó `.vscode/settings.json` que apaga el corrector de ortografía (cSpell) en el proyecto: estaba en inglés y marcaba todo el español. Los avisos de Pylance sobre `google.colab` e `IPython` son normales (Pylance revisa con el Python de la PC, pero el notebook corre en Colab) |
+| 2026-10-21 | Raúl pidió que Claude corra el notebook y corrija errores sin que él toque nada. La extensión de Colab no lo permite, así que (con permiso de Raúl) se creó el repo **privado** `RAULHNZA/proyecto-red-neuronal` y un workflow de GitHub Actions que corre el notebook con `nbconvert --execute --allow-errors`, sube el notebook ejecutado y `resultados/` como artefacto y falla si alguna celda tiene error. La identidad de git del repo usa el correo noreply de GitHub |
+| 2026-10-21 | Primera corrida en Actions: 0 errores, pero el gradient check marcó 4.9e-05 (❌). Se reprodujo en local solo con numpy (CSV en `datos/`): da 1.1e-11. La causa eran neuronas con z casi 0: el ±eps cruza la esquina de ReLU y la derivada numérica sale falsa. El check ahora omite esos pesos y dice cuántos (en Actions: 2 de 257). Resultado: 1.04e-11 ✅ |
+| 2026-10-21 | **Resultados reales (test):** red MAE 52.95 Wh, RMSE 92.13 Wh, R² 0.159; regresión lineal MAE 55.64, RMSE 97.40, R² 0.061. La red tiene 4.8 % menos MAE. Loss train 2.54 → 0.848 y val 1.79 → 0.760; con init Normal(0, 0.01) se queda en 1.000. La red casi nunca predice más de ~215 Wh aunque hay consumos reales de 700+ Wh |
+| 2026-10-21 | Se reemplazó `notebooks/red_neuronal.ipynb` por el notebook ejecutado (con salidas) y se reescribieron las Conclusiones con los números reales. `resultados/` se copió a la raíz y `resultados.json` a `web/src/data/` (el aviso de "datos de ejemplo" desapareció). README, este plan y la web se actualizaron con las métricas |
