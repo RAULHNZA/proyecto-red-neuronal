@@ -2,7 +2,7 @@
 
 Última actualización: 2026-10-21
 
-**Siguiente paso: la Fase 1.** Raúl corre `notebooks/red_neuronal.ipynb` en Colab con los datos reales y deja `resultados/` y el notebook con salidas en la carpeta del proyecto. La página de React ya está hecha con datos de ejemplo; solo falta cambiarle el JSON por el real.
+**Siguiente paso: la Fase 1.** Raúl corre `notebooks/red_neuronal.ipynb` en Colab siguiendo [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md) (Parte 1). Deja `resultados.zip` y el notebook con salidas en su carpeta de Descargas, y Claude los acomoda. La página de React ya está hecha con datos de ejemplo; solo falta cambiarle el JSON por el real.
 
 Proyecto final de **Seminario de Sistemas II**: Raúl Hernández Nuñez, matrícula 2173770, carrera IAS, grupo 002. Para instalar el entorno, ver [INSTALACION.md](INSTALACION.md).
 
@@ -36,7 +36,7 @@ Google Colab ──resultados/──▶ GitHub ──resultados.json──▶ Re
 
 Al terminar esta fase tienes tus métricas reales y la carpeta `resultados/` con todo lo que necesita la página web. Toma unos 30 minutos.
 
-1. Abre el notebook. Hay dos formas:
+1. Abre el notebook. Hay dos formas (en la laptop de Raúl solo sirve Colab; ver la bitácora del 2026-10-21):
    - **En Colab (recomendado):** entra a [colab.research.google.com](https://colab.research.google.com), ve a *File → Upload notebook* y sube `notebooks/red_neuronal.ipynb`.
    - **En local:** sigue [INSTALACION.md](INSTALACION.md).
 2. Si ya tienes el CSV de UCI, ponlo junto al notebook o en `datos/energydata_complete.csv`. Si no, el notebook lo descarga solo con `ucimlrepo`.
@@ -45,11 +45,7 @@ Al terminar esta fase tienes tus métricas reales y la carpeta `resultados/` con
    - El *gradient check* dice "backprop correcto".
    - La curva de la Gráfica 1 (loss vs épocas) baja.
    - La red tiene menor MAE que la regresión lineal.
-5. En Colab, descarga los resultados con una celda nueva:
-   ```python
-   !zip -r resultados.zip resultados
-   from google.colab import files; files.download('resultados.zip')
-   ```
+5. En Colab, `resultados.zip` se descarga solo: lo hace la penúltima celda del notebook (agregada el 2026-10-21).
 6. Anota tus métricas de test (MAE, RMSE, R²) en la tabla de "Resultados reales" que está abajo.
 7. Corrige la celda de **Conclusiones** del notebook para que coincida con los números reales.
 8. Guarda el notebook con sus salidas (*File → Download → Download .ipynb*) y reemplaza el de `notebooks/`.
@@ -193,3 +189,6 @@ Cada push a GitHub vuelve a publicar la página automáticamente.
 | 2026-10-09 | Se escribieron este plan, `INSTALACION.md`, `CLAUDE.md` y `requirements.txt` para migrar el proyecto a otra computadora |
 | 2026-10-21 | Se creó `codigo/red_neuronal.py` (la clase del notebook más una prueba rápida), `README.md` (con métricas pendientes) y `.gitignore` |
 | 2026-10-21 | Se construyó la página en `web/` (Vite 8, React 19, Recharts 3, Tailwind 4) con los 9 componentes de la Fase 3, modo claro/oscuro y vista de celular revisada. Usa un `resultados.json` de ejemplo marcado con `"ejemplo": true` hasta tener el real |
+| 2026-10-21 | Se intentó correr el notebook en local: se creó `.venv` y se instaló `requirements.txt`, pero Windows bloquea una DLL de pandas (*"Una directiva de Control de aplicaciones bloqueó este archivo"*, probablemente Control inteligente de aplicaciones). No se intentó saltar el bloqueo. Decisión: la Fase 1 se corre en Colab |
+| 2026-10-21 | Se agregó al notebook una celda (antes de Conclusiones) que en Colab descarga `resultados.zip` sola; fuera de Colab no hace nada. El notebook queda con 33 celdas |
+| 2026-10-21 | Se escribió `docs/GUIA_PASO_A_PASO.md`: instrucciones con cada clic para correr el notebook en Colab. Raúl no conoce Colab, así que las guías para él no dan nada por sabido |

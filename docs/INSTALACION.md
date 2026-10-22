@@ -2,7 +2,7 @@
 
 Cómo preparar el entorno, conseguir el dataset y correr cada parte del proyecto en una computadora nueva. Para saber qué falta por hacer, ver [PLAN.md](PLAN.md).
 
-**Camino más corto:** Google Colab no requiere instalar nada (sección 1). Solo la página de React necesita Node.js en la computadora (sección 4).
+**Camino más corto:** Google Colab no requiere instalar nada (sección 1). Para Raúl hay una versión con cada clic en [GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md). Solo la página de React necesita Node.js en la computadora (sección 4).
 
 ---
 
@@ -160,6 +160,7 @@ Cierra `npm run dev` con Ctrl+C al terminar.
 | `UnicodeEncodeError` con los emojis ✅ al correr el código como script en la consola de Windows | La consola usa cp1252 | No pasa en Jupyter ni en Colab; en consola usa `set PYTHONIOENCODING=utf-8` |
 | La red con `init="small"` no aprende (loss ≈ 1.0) | Comportamiento esperado: pesos `Normal(0, 0.01)` muy pequeños | Por eso la red principal usa `init="he"`; el notebook lo muestra a propósito |
 | Entrenamiento lento (unos 40 s por red en una laptop) | 5000 épocas con batch completo de 13,814 filas | Normal; en Colab tarda algo parecido |
+| `ImportError: DLL load failed ... Una directiva de Control de aplicaciones bloqueó este archivo` al importar pandas en local | Windows (Control inteligente de aplicaciones) bloquea DLLs de pandas en la laptop personal de Raúl | Usar Colab ([GUIA_PASO_A_PASO.md](GUIA_PASO_A_PASO.md)). No apagar la protección: en Windows 11 no se puede volver a encender sin reinstalar |
 | R² bajo (menor a 0.4) | Las 6 variables no explican el comportamiento humano | Es esperado; se explica en las conclusiones |
 
 ---

@@ -7,14 +7,15 @@ Proyecto final de **Seminario de Sistemas II** de Raúl Hernández Nuñez (matr�
 - [docs/PLAN.md](docs/PLAN.md): qué está hecho, qué falta y la bitácora. **Actualiza la tabla de estado y la bitácora cada vez que termines algo.**
 - [docs/INSTALACION.md](docs/INSTALACION.md): cómo instalar el entorno, conseguir los datos y correr cada parte.
 
-**Siguiente paso:** la Fase 1. Raúl corre el notebook en Colab y deja aquí `resultados/` y el notebook con salidas. Después hay que copiar `resultados/resultados.json` a `web/src/data/`, llenar las métricas en README y PLAN, y ajustar las conclusiones. La web ya está hecha (2026-10-21) con datos de ejemplo.
+**Siguiente paso:** la Fase 1. Raúl corre el notebook en Colab con `docs/GUIA_PASO_A_PASO.md` y deja `resultados.zip` y el `.ipynb` con salidas en `C:\Users\crule\Downloads`; tú los mueves al proyecto. En local no se puede porque Windows bloquea pandas (ver INSTALACION.md §5). Después hay que copiar `resultados/resultados.json` a `web/src/data/`, llenar las métricas en README y PLAN, y ajustar las conclusiones. La web ya está hecha (2026-10-21) con datos de ejemplo.
 
 ## Estructura
 
 ```
-notebooks/red_neuronal.ipynb   Notebook principal (32 celdas, 7 secciones). Es la fuente de la verdad del modelo.
+notebooks/red_neuronal.ipynb   Notebook principal (33 celdas, 7 secciones). Es la fuente de la verdad del modelo.
 docs/PLAN.md                   Plan por fases, estado y bitácora
 docs/INSTALACION.md            Instalación, datos y problemas conocidos
+docs/GUIA_PASO_A_PASO.md       Instrucciones con cada clic para Raúl (Colab y luego Vercel)
 requirements.txt               Librerías de Python
 resultados/                    (pendiente) Lo genera el notebook: PNGs, metricas.txt y resultados.json
 codigo/red_neuronal.py         La clase NeuralNetwork como script (copia de la celda cell-12)
