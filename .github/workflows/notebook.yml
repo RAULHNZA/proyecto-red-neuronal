@@ -1,0 +1,56 @@
+# Corre notebooks/red_neuronal.ipynb completo en una máquina de GitHub (Ubuntu)
+# y guarda el notebook con salidas y la carpeta resultados/ como artefacto.
+# Se usa porque en la laptop de Raúl Windows bloquea pandas (ver docs/INSTALACION.md §5).
+name: Correr notebook
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "notebooks/red_neuronal.ipynb"
+      - "requirements.txt"
+      - ".github/workflows/notebook.yml"
+
+jobs:
+  notebook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar librerías
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar el notebook
+        working-directory: notebooks
+        run: |
+          jupyter nbconvert --to notebook --execute red_neuronal.ipynb \
+            --output red_neuronal_ejecutado.ipynb \
+            --allow-errors --ExecutePreprocessor.timeout=1500
+
+      - name: Guardar resultados
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados
+          path: |
+            notebooks/red_neuronal_ejecutado.ipynb
+            notebooks/resultados/
+
+      - name: Revisar que ninguna celda tenga error
+        working-directory: notebooks
+        run: |
+          python - <<'EOF'
+          import json, sys
+          nb = json.load(open("red_neuronal_ejecutado.ipynb", encoding="utf-8"))
+          errores = [(i, o["ename"], o["evalue"]) for i, c in enumerate(nb["cells"])
+                     for o in c.get("outputs", []) if o["output_type"] == "error"]
+          for i, nombre, valor in errores:
+              print(f"::error::Celda {i}: {nombre}: {valor}")
+          sys.exit(1 if errores else 0)
+          EOF
