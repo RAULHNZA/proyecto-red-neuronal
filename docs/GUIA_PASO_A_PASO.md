@@ -7,6 +7,15 @@ Si algo no se ve igual que aquí, toma una captura de pantalla y pásasela a Cla
 
 ## Parte 1: entrenar la red en Google Colab (unos 10 minutos)
 
+> **Opción fácil: que Claude lo haga por ti.** Con la extensión **Claude para Chrome** (ya instalada), Claude puede abrir Colab, subir el notebook y correrlo. Para darle permiso (solo una vez):
+> 1. En Chrome, haz clic en el ícono de Claude (arriba a la derecha) y revisa que estés en la **misma cuenta** que usas en Claude Code.
+> 2. En el cuadro donde le escribes a Claude en VS Code, escribe **/chrome** y presiona Enter.
+> 3. Activa el interruptor **"Enabled by default"** y revisa que diga **Status: Enabled** y **Extension: Installed**.
+> 4. Abre un chat nuevo y escribe: *"ya activé Chrome, corre el notebook en Colab"*.
+> 5. Cuando Chrome muestre avisos *"Claude quiere…"*, haz clic en **Permitir**.
+>
+> Si prefieres hacerlo tú, sigue los pasos de abajo.
+
 **¿Por qué en Colab y no en tu computadora?** Windows bloquea una de las librerías que usa el notebook (pandas) con el mensaje *"Una directiva de Control de aplicaciones bloqueó este archivo"*. Es una protección de Windows y no conviene apagarla. Colab es una página de Google que corre el notebook en sus computadoras, así que no te afecta ese bloqueo y no tienes que instalar nada.
 
 **Lo que necesitas:** internet y una cuenta de Google (la de Gmail sirve).
