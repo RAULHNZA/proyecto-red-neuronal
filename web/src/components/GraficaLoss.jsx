@@ -2,6 +2,7 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 import Seccion from './Seccion.jsx'
 import CajaTooltip from './Tooltip.jsx'
 import { ejes, fmt } from '../utils.js'
+import { useEnVista } from '../hooks.js'
 
 const SERIES = [
   { clave: 'train', nombre: 'Entrenamiento', color: 'var(--series-1)' },
@@ -11,6 +12,7 @@ const SERIES = [
 export default function GraficaLoss({ loss }) {
   const inicio = loss[0]
   const fin = loss.at(-1)
+  const [ref, visible] = useEnVista()
   // Marcas del eje X cada 1,000 épocas
   const epocas = Math.ceil(fin.epoca / 1000) * 1000
   const marcas = Array.from({ length: epocas / 1000 + 1 }, (_, i) => i * 1000)
@@ -18,6 +20,7 @@ export default function GraficaLoss({ loss }) {
   return (
     <Seccion
       id="entrenamiento"
+      numero="04"
       titulo="El entrenamiento"
       subtitulo="El loss (MSE con los datos normalizados) en cada época. Si baja, la red está aprendiendo; si el de validación baja junto con el de entrenamiento, no solo está memorizando."
     >
@@ -33,8 +36,8 @@ export default function GraficaLoss({ loss }) {
             </span>
           ))}
         </div>
-        <div className="h-72 sm:h-80">
-          <ResponsiveContainer width="100%" height="100%">
+        <div ref={ref} className="h-72 sm:h-80">
+          {visible && <ResponsiveContainer width="100%" height="100%">
             <LineChart data={loss} margin={{ top: 8, right: 12, bottom: 20, left: 0 }}>
               <CartesianGrid stroke="var(--grid)" vertical={false} />
               <XAxis dataKey="epoca" type="number" domain={[0, epocas]} ticks={marcas} {...ejes}
@@ -59,11 +62,11 @@ export default function GraficaLoss({ loss }) {
               />
               {SERIES.map((s) => (
                 <Line key={s.clave} dataKey={s.clave} name={s.nombre} stroke={s.color}
-                  strokeWidth={2} dot={false} isAnimationActive={false}
+                  strokeWidth={2} dot={false} animationDuration={1800} animationEasing="ease-out"
                   activeDot={{ r: 4, stroke: 'var(--surface-1)', strokeWidth: 2 }} />
               ))}
             </LineChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer>}
         </div>
       </div>
     </Seccion>

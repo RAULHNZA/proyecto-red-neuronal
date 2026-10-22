@@ -2,6 +2,7 @@ import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YA
 import Seccion from './Seccion.jsx'
 import CajaTooltip from './Tooltip.jsx'
 import { ejes, fmt } from '../utils.js'
+import { useEnVista } from '../hooks.js'
 
 const MODELOS = [
   { nombre: 'Regresión lineal', color: 'var(--neutral)' },
@@ -24,10 +25,12 @@ function mejora(red, lin, g) {
 export default function Comparacion({ metricas }) {
   const red = metricas.red_neuronal['Prueba']
   const lin = metricas.regresion_lineal_test
+  const [ref, visible] = useEnVista()
 
   return (
     <Seccion
       id="comparacion"
+      numero="07"
       titulo="Red neuronal vs. regresión lineal"
       subtitulo="Una regresión lineal de scikit-learn entrenada con exactamente los mismos datos sirve como punto de comparación. Resultados en el set de prueba."
     >
@@ -39,7 +42,7 @@ export default function Comparacion({ metricas }) {
           </span>
         ))}
       </div>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div ref={ref} className="grid gap-4 sm:grid-cols-3">
         {GRAFICAS.map((g) => {
           const datos = [
             { ...MODELOS[0], valor: lin[g.clave] },
@@ -50,7 +53,7 @@ export default function Comparacion({ metricas }) {
               <p className="font-semibold">{g.clave}</p>
               <p className="texto-3 text-xs">{g.menorEsMejor ? 'Menos es mejor' : 'Más es mejor'}</p>
               <div className="mt-3 h-48">
-                <ResponsiveContainer width="100%" height="100%">
+                {visible && <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={datos} margin={{ top: 22, right: 4, bottom: 0, left: 4 }} barCategoryGap="24%">
                     <XAxis dataKey="nombre" {...ejes} tick={{ ...ejes.tick, fontSize: 11 }} interval={0} />
                     <YAxis hide domain={[0, 'auto']} />
@@ -66,13 +69,13 @@ export default function Comparacion({ metricas }) {
                         ) : null
                       }
                     />
-                    <Bar dataKey="valor" radius={[4, 4, 0, 0]} isAnimationActive={false}>
+                    <Bar dataKey="valor" radius={[4, 4, 0, 0]} animationDuration={1200} animationEasing="ease-out">
                       {datos.map((d) => <Cell key={d.nombre} fill={d.color} />)}
                       <LabelList dataKey="valor" position="top" fill="var(--text-primary)" fontSize={13}
                         formatter={(v) => fmt(v, g.dec)} />
                     </Bar>
                   </BarChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer>}
               </div>
               <p className="texto-2 mt-2 text-sm">
                 Red vs. lineal: <span className="font-medium text-[var(--text-primary)]">{mejora(red[g.clave], lin[g.clave], g)}</span>

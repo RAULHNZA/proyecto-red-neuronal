@@ -36,11 +36,11 @@ export default function Conclusiones({ metricas }) {
   ]
 
   return (
-    <Seccion id="conclusiones" titulo="Conclusiones">
+    <Seccion id="conclusiones" numero="08" titulo="Conclusiones">
       <ol className="space-y-4">
         {puntos.map((p, i) => (
           <li key={p.titulo} className="tarjeta flex gap-4 p-6">
-            <span className="texto-3 text-2xl font-bold tabular-nums">{i + 1}</span>
+            <span className="font-mono text-sm font-semibold text-[var(--series-1)]">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3 className="font-semibold">{p.titulo}</h3>
               <p className="texto-2 mt-1">{p.texto}</p>

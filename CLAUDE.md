@@ -41,6 +41,7 @@ datos/                         (opcional, no se sube a git) energydata_complete.
 - Los documentos originales de Drive prometen un R² de alrededor de 0.92 ("90 % de precisión"). **Eso no es realista** con estas 6 variables: espera un R² menor a 0.4. Raúl ya lo sabe. Reporta los números reales con honestidad, no los maquilles.
 - Datos: `fetch_ucirepo(id=374).data.original`, con respaldos (ver INSTALACION.md §3). Se usa `.data.original` porque hace falta la columna `date`.
 - La presentación usa kWh en la diapositiva de arquitectura; lo correcto es Wh.
+- **Diseño de la web (2026-10-21):** tema claro único, minimalista y tecnológico, con animaciones que nunca tapan el texto (Raúl lo pidió así; no quiere fondo negro). Todas las animaciones respetan `prefers-reduced-motion`. Ojo: el Windows de Raúl tiene apagados los efectos de animación, así que en su PC la página se ve sin movimiento; para capturas usa Chrome con `--force-prefers-no-reduced-motion`.
 - `resultados.json` es el contrato entre el notebook y la página web. Su formato está en PLAN.md (Fase 3). Si cambias la celda que lo genera, actualiza también la web.
 - El notebook se editó como JSON. Para cambiarlo, usa una herramienta de edición de notebooks y conserva los ids de las celdas.
 

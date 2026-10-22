@@ -19,6 +19,7 @@ export default function Datos() {
   return (
     <Seccion
       id="datos"
+      numero="02"
       titulo="Los datos"
       subtitulo={
         <>

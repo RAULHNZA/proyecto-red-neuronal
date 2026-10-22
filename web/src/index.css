@@ -1,65 +1,140 @@
 @import "tailwindcss";
 
-/* Colores por rol (claro y oscuro). Las gráficas y los textos los usan con var(--...) */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+/* Colores por rol. Tema claro: fondo blanco azulado y texto azul marino muy oscuro */
 :root {
   color-scheme: light;
-  --surface-0: #f4f4f2;
-  --surface-1: #fcfcfb;
-  --border: #e2e1dc;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --text-muted: #7a7974;
-  --grid: #e8e7e2;
-  --series-1: #2a78d6; /* red neuronal / entrenamiento */
-  --series-2: #eb6834; /* validación */
-  --neutral: #9a9893;  /* regresión lineal (referencia) */
-  --accent-soft: #e6f0fb;
+  --surface-0: #f5f8fc;  /* fondo de la página */
+  --surface-1: #ffffff;  /* tarjetas */
+  --border: #e2e8f0;
+  --text-primary: #0d1b2e;
+  --text-secondary: #46566b;
+  --text-muted: #758398;
+  --grid: #edf1f6;
+  --series-1: #2a78d6;   /* red neuronal / entrenamiento */
+  --series-2: #eb6834;   /* validación */
+  --violeta: #6250d6;
+  --neutral: #a3acb8;    /* regresión lineal (referencia) */
+  --accent-soft: #e9f1fc;
+  --sombra: 0 1px 2px rgb(13 27 46 / 0.04), 0 8px 24px -12px rgb(13 27 46 / 0.10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --surface-0: #111110;
-    --surface-1: #1a1a19;
-    --border: #2e2e2c;
-    --text-primary: #f0efec;
-    --text-secondary: #c3c2b7;
-    --text-muted: #8f8e88;
-    --grid: #2a2a28;
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --neutral: #75746f;
-    --accent-soft: #1b2a3d;
-  }
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --surface-0: #111110;
-  --surface-1: #1a1a19;
-  --border: #2e2e2c;
-  --text-primary: #f0efec;
-  --text-secondary: #c3c2b7;
-  --text-muted: #8f8e88;
-  --grid: #2a2a28;
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --neutral: #75746f;
-  --accent-soft: #1b2a3d;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--surface-0);
   color: var(--text-primary);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #cfe1f8;
 }
 
 .tarjeta {
   background: var(--surface-1);
   border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--sombra);
 }
 
 .texto-2 { color: var(--text-secondary); }
 .texto-3 { color: var(--text-muted); }
+
+/* Etiqueta pequeña en letra de código, p. ej. "01 — El problema" */
+.etiqueta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--series-1);
+}
+
+/* Texto con degradado azul → violeta */
+.degradado {
+  background: linear-gradient(100deg, var(--series-1) 10%, var(--violeta) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Punto "en vivo" que late */
+.punto-vivo {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--series-1);
+}
+.punto-vivo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--series-1);
+  animation: latido 2s ease-out infinite;
+}
+@keyframes latido {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+/* Aparecer al hacer scroll (componente Revelar) */
+.revelar {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Diagrama de la arquitectura: señales que recorren las capas */
+.senal {
+  stroke-dasharray: 14 100;
+  stroke-dashoffset: 14;
+  animation: senal 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes senal {
+  0% { stroke-dashoffset: 14; opacity: 0; }
+  5% { opacity: 1; }
+  30% { stroke-dashoffset: -100; opacity: 1; }
+  31%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+.halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo 3.2s ease-out infinite;
+  opacity: 0;
+}
+@keyframes halo {
+  0% { transform: scale(1); opacity: 0.45; }
+  25%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Flecha que invita a bajar */
+.bajar {
+  animation: bajar 2.2s ease-in-out infinite;
+}
+@keyframes bajar {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* Si la computadora pide reducir movimiento, todo queda quieto */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .revelar { opacity: 1; transform: none; transition: none; }
+  .senal, .halo, .bajar, .punto-vivo::after { animation: none; }
+  .senal, .halo { display: none; }
+}

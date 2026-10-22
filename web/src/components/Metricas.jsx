@@ -1,4 +1,5 @@
 import Seccion from './Seccion.jsx'
+import Contador from './Contador.jsx'
 import { fmt } from '../utils.js'
 
 const CLAVES = [
@@ -13,6 +14,7 @@ export default function Metricas({ metricas }) {
   return (
     <Seccion
       id="metricas"
+      numero="06"
       titulo="Métricas"
       subtitulo="Calculadas a mano con NumPy y comprobadas contra scikit-learn. Las del set de prueba son las que cuentan, porque son datos que la red nunca vio."
     >
@@ -21,7 +23,7 @@ export default function Metricas({ metricas }) {
           <div key={c.clave} className="tarjeta p-6">
             <p className="texto-2 text-sm font-medium">{c.nombre} en prueba</p>
             <p className="mt-1 text-4xl font-bold tracking-tight tabular-nums">
-              {fmt(prueba[c.clave], c.dec)}
+              <Contador valor={prueba[c.clave]} dec={c.dec} />
               {c.unidad && <span className="texto-3 ml-1 text-lg font-medium">{c.unidad}</span>}
             </p>
             <p className="texto-3 mt-2 text-sm">{c.desc}</p>

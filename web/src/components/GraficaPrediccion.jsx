@@ -4,8 +4,10 @@ import {
 import Seccion from './Seccion.jsx'
 import CajaTooltip from './Tooltip.jsx'
 import { ejes, fmt } from '../utils.js'
+import { useEnVista } from '../hooks.js'
 
 export default function GraficaPrediccion({ puntos }) {
+  const [ref, visible] = useEnVista()
   // Mismo rango en ambos ejes, en múltiplos de 100 (la red puede predecir valores negativos)
   const valores = puntos.flatMap((p) => [p.real, p.prediccion])
   const min = Math.min(0, Math.floor(Math.min(...valores) / 100) * 100)
@@ -17,6 +19,7 @@ export default function GraficaPrediccion({ puntos }) {
   return (
     <Seccion
       id="predicciones"
+      numero="05"
       titulo="Predicción vs. consumo real"
       subtitulo={`${puntos.length} puntos al azar del set de prueba (datos que la red nunca vio). Si la predicción fuera perfecta, todos los puntos caerían sobre la línea punteada y = x.`}
     >
@@ -31,8 +34,8 @@ export default function GraficaPrediccion({ puntos }) {
             <span className="texto-2">Predicción perfecta (y = x)</span>
           </span>
         </div>
-        <div className="mx-auto aspect-square max-h-[520px] w-full max-w-[560px]">
-          <ResponsiveContainer width="100%" height="100%">
+        <div ref={ref} className="mx-auto aspect-square max-h-[520px] w-full max-w-[560px]">
+          {visible && <ResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 8, right: 12, bottom: 24, left: 8 }}>
               <CartesianGrid stroke="var(--grid)" />
               <XAxis type="number" dataKey="real" domain={dominio} ticks={marcas} {...ejes}
@@ -53,11 +56,11 @@ export default function GraficaPrediccion({ puntos }) {
                   ) : null
                 }
               />
-              <Scatter data={puntos} fill="var(--series-1)" fillOpacity={0.45} isAnimationActive={false}
+              <Scatter data={puntos} fill="var(--series-1)" fillOpacity={0.45} animationDuration={1200}
                 shape={(p) => <circle cx={p.cx} cy={p.cy} r={4} fill="var(--series-1)" fillOpacity={0.45} />}
                 activeShape={(p) => <circle cx={p.cx} cy={p.cy} r={6} fill="var(--series-1)" stroke="var(--surface-1)" strokeWidth={2} />} />
             </ScatterChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer>}
         </div>
         <p className="texto-2 mt-3 text-sm">
           Los consumos altos (picos) quedan por debajo de la línea: la red tiende a predecir valores
